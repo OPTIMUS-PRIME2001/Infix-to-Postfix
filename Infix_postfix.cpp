@@ -101,8 +101,13 @@ string infixToPostfix( string s ) // The function to calculate
       else if(s[i]==')')     //'close first braces encountered 
         { 
 			while( ((ch=S.Topele())!='(') && (S.Topele()!='\0') ) //check no null or no first braces encountered 
-            S.Pop();     //pop value and movie it to 
-            postfix +=ch;
+			{ S.Pop();     //pop value and movie it to 
+                          postfix +=ch;
+			}
+	      if(S.Topele()!='(')
+               {
+		S.Pop();
+	        }
         }    
       
       else
@@ -115,10 +120,7 @@ string infixToPostfix( string s ) // The function to calculate
           }
           S.Push(s[i]); 
        }
-      if(S.Topele()!='(')
-      {
-		S.Pop();
-	  }
+      
     }
 
   while(S.Topele()!='\0')
