@@ -104,7 +104,7 @@ string infixToPostfix( string s ) // The function to calculate
 			{ S.Pop();     //pop value and movie it to 
                           postfix +=ch;
 			}
-	      if(S.Topele()!='(')
+	      if(S.Topele()=='(')
                {
 		S.Pop();
 	        }
