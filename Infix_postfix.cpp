@@ -12,15 +12,17 @@ class Stack
               Stack[top]=ch;
             }
           }
+ 
           char Pop()
           { char temp;
             if(top!=-1)
              { temp=Stack[top];
-              top--;
-              return temp;
+               top--;
+               return temp;
              }
             else return '\0';
           }
+ 
           char Topele()
           { char ch;
             if(top!=-1){ch=Stack[top];
@@ -47,14 +49,19 @@ int precedence(char ch) //function to check precendence of the operators
 bool check_braces(string s) //function to check equal number of braces(in out) present or not
 { int leftbr=0,rightbr=0;
   for(int i=0;s[i];i++)
-   { if(s[i]=='(') leftbr++;
-     else if(s[i]==')') rightbr++;
+   { if(s[i]=='(')      
+        leftbr++;
+     else if(s[i]==')') 
+        rightbr++;
    }
-   if(leftbr==rightbr) {return true;}
-   else {return false;}
+   if(leftbr==rightbr) 
+        {return true;}
+   else 
+        {return false;}
 }
 string infixToPostfix(string s) // The function to calculate 
-{ bool chk=check_braces(s); char ch;
+{ bool chk=check_braces(s); 
+  char ch;
   string postfix; //another string to get the postfix expression
   if(chk==false)
     { cout<<"\nUnbalanced no. of braces\n Extra bracket";    
@@ -65,8 +72,7 @@ string infixToPostfix(string s) // The function to calculate
           { postfix += s[i];  //paste it to postfix expression
           }  
       else if(s[i]=='(')       // first braces encountered 
-          { S.Push(s[i]); //push it to stack
-             
+          { S.Push(s[i]); //push it to stack             
           }
       else if(s[i]==')')     //'close first braces encountered 
           { while(((ch=S.Topele())!='(') && (S.Topele()!='\0')) //check no null or no first braces encountered 
@@ -99,13 +105,13 @@ int main()
         ifstream fiP; //file opened in read mode
         fiP.open("Infix.txt", ios::in);
         if(!fiP)        //if statement to check is file is null or doesn't exist
-            {cout<<"File can\'t be opened \n";}
+            { cout<<"File can\'t be opened \n"; }
         else
             {  while(!fiP.eof())  //while loop untill end of file
                   { getline(fiP,line); //line take the infix expression from file
                     cout<< infixToPostfix(line) <<endl; 
                   }
-                  }                
+            }                
         fiP.close(); // read mode file closed
   return 0;
 }
