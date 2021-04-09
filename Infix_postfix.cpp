@@ -54,8 +54,7 @@ int precedence(char ch) //function to check precendence of the operators
     case '<':return 4;
     case '>':return 4;
     case '&':return 3;
-    //case "&&":return 2;
-    //case "||":return 1;
+    case '|':return 2;
     default: return 0;
   }
 }
@@ -90,7 +89,7 @@ string infixToPostfix( string s ) // The function to calculate
     }
   for (int i=0; s[i]!='\0'; i++)
    { cout<< s[i] <<endl; 
-     if (isalnum( s[i] ) )        //alphabet and numeric value encountered
+     if (isalnum( s[i] ) || s[i]=='.')        //alphabet and numeric value encountered
         { 
 		   postfix += s[i];  //paste it to postfix expression
         }  
@@ -100,10 +99,10 @@ string infixToPostfix( string s ) // The function to calculate
         }
       else if(s[i]==')')     //'close first braces encountered 
         { 
-			while( ((ch=S.Topele())!='(') && (S.Topele()!='\0') ) //check no null or no first braces encountered 
-			{ S.Pop();     //pop value and movie it to 
-                          postfix +=ch;
-			}
+		while( ((ch=S.Topele())!='(') && (S.Topele()!='\0') ) //check no null or no first braces encountered 
+	        { S.Pop();     //pop value and movie it to 
+                   postfix +=ch;
+		}
 	      if(S.Topele()=='(')
                {
 		S.Pop();
@@ -112,7 +111,7 @@ string infixToPostfix( string s ) // The function to calculate
       
       else
        { 
-		  while((S.Topele()!='\0')&&(precedence(S.Topele())>=precedence(s[i])))
+	  while((S.Topele()!='\0')&&(precedence(S.Topele())>=precedence(s[i]))&&(s[i]!='&')&&(s[i]!='|'))
           { 
             ch=S.Topele();
             S.Pop();
