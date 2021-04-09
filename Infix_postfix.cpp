@@ -143,7 +143,8 @@ int main()
 		     while(!fiP.eof())              //while loop untill end of file
                { 
 				   getline(fiP,line);    //line take the infix expression from file
-                   cout<< infixToPostfix(line) <<endl; 
+                   cout<<"Infix Expression="<<line<<endl;
+                   cout<<"Postfix Expression="<<infixToPostfix(line)<<"\n\n";
                }
            }                
   fiP.close(); // read mode file closed
